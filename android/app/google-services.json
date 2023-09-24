@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "381302516480",
+    "project_id": "artigo-remote-config",
+    "storage_bucket": "artigo-remote-config.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381302516480:android:14a55737b4c14e510461e5",
+        "android_client_info": {
+          "package_name": "com.gabrieldonato.remote_config"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd_xfiPkA5hFmh4QO7sPbdxG4wugu51i4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
