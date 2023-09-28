@@ -1,16 +1,20 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:remote_config/features/custom_themes/domain/usecases/custom_theme_usecase.dart';
+import 'package:remote_config/features/custom_themes/presenter/cubit/custom_theme_cubit.dart';
 import 'package:remote_config/firebase_options.dart';
-import 'package:remote_config/firebase_remote_config.dart';
+import 'package:remote_config/core/injects/injection.dart';
+import 'package:remote_config/core/instance_get_it/instance_get_it.dart';
 
-import 'home_page.dart';
+import 'features/custom_themes/presenter/pages/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  CustomRemoteConfig().initialize();
+  Injection.inject(getIt);
   runApp(const MyApp());
 }
 
@@ -22,10 +26,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Remote Config',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: BlocProvider<CustomThemeCubit>(
+        create: (context) => CustomThemeCubit(
+          customThemeUsecase: getIt.get<CustomThemeUsecase>(),
+        ),
+        child: const MyHomePage(title: 'Flutter Demo Home Page'),
+      ),
     );
   }
 }
